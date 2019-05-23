@@ -10,9 +10,11 @@ Images available to pull:
 - `sudo docker pull levan92/openpose:init`
 
 To build image from Dockerfile:
+
 `sudo nvidia-docker build -t "levan92/openpose" .`
 
 To run image with display:
+
 `sudo nvidia-docker run -it --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" levan92/openpose`
 
 
