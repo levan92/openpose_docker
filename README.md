@@ -1,8 +1,14 @@
 # Openpose on nvidia-docker
 
 ## Description
-- Comes with opencv, sublime text
-- user:pwd
+- Comes with 
+    - CUDA 8.0
+    - opencv 3.4.0 (python3)
+    - caffe 1.0 (python3)
+    - openpose (python3, latest version as of May 2019, with hand, body, face landmarks detection)
+    - sublime text
+    - packages needed to run with display
+- Docker credentials: user:pwd
 
 ## Usage
 Images available to pull:
