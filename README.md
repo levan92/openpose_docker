@@ -21,7 +21,7 @@ To build image from Dockerfile:
 
 To run image with display:
 
-`sudo nvidia-docker run -it --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" levan92/openpose`
+`sudo nvidia-docker run -it --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --volume="/home/dh/Workspace/openpose_docker/shared/:/home/shared" levan92/openpose:version2`
 
 
 ## Additional info
