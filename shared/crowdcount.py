@@ -26,9 +26,11 @@ params['model_pose'] = "BODY_25"
 # params['model_pose'] = "MPI" # 15 keypoints
 # params['model_pose'] = "MPI_4_layers" # 15 keypoints, less accurate but faster
 # params['net_resolution']="-1x368" # default, best balance, 16*23
+assert(os.path.exists(args[0].img_path)),'img path {} does not exist!'.format(args[0].img_path)
 imageToProcess = cv2.imread(args[0].img_path)
 ratio = imageToProcess.shape[1] / float(imageToProcess.shape[0])
 # net_height_mult = 69 #set this
+# net_height_mult = 60 #set this
 net_height_mult = 60 #set this
 net_height = net_height_mult * 16
 net_width = net_height*ratio
@@ -91,7 +93,7 @@ try:
     # cv2.imshow("Openpose", datum.cvOutputData)
     cv2.imshow('Openpose', frame_show)
 
-
+    cv2.imwrite(os.path.basename(args[0].img_path).split('.')[0]+"_crowdcount.png", frame_show)
 
     cv2.waitKey(0)
 except Exception as e:

@@ -1,5 +1,6 @@
 import cv2
 from random import randint 
+from copy import deepcopy
 
 color = (255,255,0)
 
@@ -8,7 +9,7 @@ fontScale = 5
 fontColor = (255,255,0)
 fontThickness = 5
 
-def draw_keypoints(frame, people_kps, threshold=0.5):
+def draw_keypoints(frame, people_kps, threshold=0.5, alpha=0.5):
     # print(frame.shape)
     # count = 0
     for kps in people_kps:
@@ -40,6 +41,12 @@ def draw_keypoints(frame, people_kps, threshold=0.5):
             # print(x,y)
             cv2.circle(frame, (x,y), 4, color, -1)
 
+    frame_h = frame.shape[0]
+    frame_w = frame.shape[1]
+
+    fontScale = max(int(frame_w/525), 1)
+    fontThickness = int(fontScale*2)
+
     # text_red = 'N P e s C u t d: {}'.format(len(people_kps))
     # text_white = ' D e p   o n e'
     text = 'NDPeeps Counted: {}'.format(len(people_kps))
@@ -48,7 +55,12 @@ def draw_keypoints(frame, people_kps, threshold=0.5):
     # text_white = ' ' + ' '.join(text[1::2])
     # print(text_white)
     # cv2.putText(frame, text_red, (20,150), font, fontScale, (0,0,255), fontThickness)
-    cv2.rectangle(frame, (20,25), (20+len(text)*92, 25+30*fontScale), (0,0,255), -1)
-    cv2.putText(frame, text, (20,150), font, fontScale, (255,255,255), fontThickness)
+
+    # overlay = deepcopy(frame)
+    # cv2.rectangle(overlay, (20,25), (20+len(text)*92, 25+30*fontScale), (0,0,255), -1)
+
+    # cv2.addWeighted(overlay, alpha, frame, 1-alpha, 0, frame)
+
+    cv2.putText(frame, text, (20,frame_h-20), font, fontScale, (255,255,255), fontThickness)
     # cv2.putText(frame, text, (20,150), font, fontScale, fontColor, fontThickness)
 
